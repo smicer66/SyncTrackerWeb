@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-import { Register } from "../controllers/register.js";
+var RegisterController = require("../controllers/register.controller");
 
 /* GET home page. */
 router.get('/login', function(req, res, next) {
@@ -28,7 +28,7 @@ router.get("/sign-up", function(req, res) {
 });
 
 
-router.post("/sign-up", Register);
+router.post("/sign-up", RegisterController.register);
 /*router.get("/sign-up", function(req, res) {
   const { email, password } = req.body;
 
