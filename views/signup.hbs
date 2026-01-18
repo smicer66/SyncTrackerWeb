@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800 px-4">
+    <div class="w-full max-w-sm rounded-2xl shadow-xl bg-white p-5 sm:p-6 space-y-6">
+      <div class="text-center space-y-1">
+        <h1 class="text-xl sm:text-2xl font-semibold">Create Company Account</h1>
+        <p class="text-sm text-gray-500">Register your business to get started</p>
+      </div>
+
+      <form method="POST" action="/signup" class="space-y-4">
+        <div class="space-y-2">
+          <label class="text-sm font-medium">Company Name</label>
+          <input
+            name="clientName"
+            type="text"
+            placeholder="Acme Ltd"
+            required
+            class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring"
+          />
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-sm font-medium">Mobile Number</label>
+          <input
+            name="mobileNumber"
+            type="tel"
+            placeholder="+44 7123 456789"
+            required
+            class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring"
+          />
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-sm font-medium">Email Address</label>
+          <input
+            name="emailAddress"
+            type="email"
+            placeholder="support@yourcompany.co.uk"
+            required
+            class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring"
+          />
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-sm font-medium">Password</label>
+          <input
+            name="password"
+            type="password"
+            placeholder="••••••••"
+            required
+            class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring"
+          />
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-sm font-medium">Confirm Password</label>
+          <input
+            name="confirmPassword"
+            type="password"
+            placeholder="••••••••"
+            required
+            class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-slate-900 text-white py-2 rounded-xl hover:bg-slate-800 transition"
+        >
+          Create account
+        </button>
+      </form>
+
+      <div class="text-center text-sm text-gray-500">
+        Already have an account?
+        <a href="/login" class="text-blue-600 hover:underline">Sign in</a>
+      </div>
+    </div>
+  </body>
+</html>
