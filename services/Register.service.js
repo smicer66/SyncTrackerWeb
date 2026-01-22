@@ -1,5 +1,7 @@
 var http = require('http');
 var querystring = require('querystring');
+const request = require('request');
+//var fetch = require("node-fetch");
 
 
 exports.postRegisterNewCustomer = async function(req, res, next){
@@ -16,7 +18,7 @@ exports.postRegisterNewCustomer = async function(req, res, next){
 	{
 		//throw error on password
 	}
-	*/
+	
 	/*const response = await fetch("http://localhost:8080/api/vi/client/create-client", {
 	  method: "POST",
 	  headers: {
@@ -31,46 +33,36 @@ exports.postRegisterNewCustomer = async function(req, res, next){
 			password: password
 		}
 	  })
-	});
-	
-	var post_data = querystring.stringify({
-		clientName: clientName,
-		createUserRequest: {
-			mobileNumber: mobileNumber,
-			emailAddress: emailAddress,
-			password: password
+	});*/
+	request({
+		url: 'http://localhost:8080/api/vi/client/create-client',
+		method: "POST",
+		json: {
+			clientName: clientName,
+			createUserRequest: {
+				mobileNumber: mobileNumber,
+				emailAddress: emailAddress,
+				password: password
+			}
 		}
-	});
+	}, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            //console.log(body);
+			return {"status": 0, "message": 'Your new SyncTracker account has been created successfully. We have sent you an email'+ 
+				'containing a 6-digit code. Enter the code to activate your account.'};
+			
+        }
+        else {
 
-	  // An object of options to indicate where to post to
-	var post_options = {
-		  host: 'localhost',
-		  port: '80',
-		  path: '/api/vi/client/create-client',
-		  method: 'POST',
-		  headers: {
-			  'Content-Type': 'application/json',
-			  'Content-Length': Buffer.byteLength(post_data)
-		  }
-	};
-
-	  // Set up the request
-	var post_req = http.request(post_options, function(res) {
-		  res.setEncoding('utf8');
-		  res.on('data', function (chunk) {
-			  console.log('Response: ' + chunk);
-		  });
-	});
-
-	  // post the data
-	post_req.write(post_data);
-	post_req.end();
-
-	/*if (!response.ok) {
-	  throw new Error(`HTTP error! Status: ${response.status}`);
-	}
-
-	const data = await response.json();
-	console.log(data);*/
+            //console.log("error: " + error)
+            //console.log("response.statusCode: " + response.statusCode)
+            //console.log("response.statusText: " + response.statusText)
+			return {"status": 1, "message": 'We could not create your new SyncTracker account. Fix the errors before trying again.'};
+			
+        }
+    })
+	
+	
+	
 	
 }
