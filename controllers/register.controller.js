@@ -7,7 +7,8 @@ exports.register = async function(req, res, next) {
     const { clientName, mobileNumber, emailAddress, password, confirmPassword } = req.body;
     try {
         // create an instance of a user
-		await RegisterService.postRegisterNewCustomer(req, res, next).then((data) => {
+		//req, res, next
+		/*await RegisterService.postRegisterNewCustomer(req.body).then((data) => {
 			console.log("response");
 			console.log(data);
 			if(data.status==0)
@@ -21,7 +22,17 @@ exports.register = async function(req, res, next) {
 				req.session.redirectData = data;
 				res.redirect('back');
 			}	
-		});
+		});*/
+		
+		try {
+			//const aa = await 
+			return RegisterService.postRegisterNewCustomer(req, res, next);
+			//console.log(">>>>>>d>>>>>>>>>>>>");
+			//console.log(res.json());
+			//res.status(200).json(result);
+		} catch (err) {
+			next(err);
+		}
 		
     } catch (err) {
 		console.log(err);
