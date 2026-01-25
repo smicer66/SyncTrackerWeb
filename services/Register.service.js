@@ -19,35 +19,7 @@ exports.postRegisterNewCustomer = async function(req, res, next){
 		//throw error on password
 	}
 	
-	/*const response = await fetch("http://localhost:8080/api/vi/client/create-client", {
-	  method: "POST",
-	  headers: {
-		"Content-Type": "application/json",
-		"Authorization": "Bearer YOUR_TOKEN"
-	  },
-	  body: JSON.stringify({
-		clientName: clientName,
-		createUserRequest: {
-			mobileNumber: mobileNumber,
-			emailAddress: emailAddress,
-			password: password
-		}
-	  })
-	});
-	const response = await fetch('http://localhost:8080/api/vi/client/create-client', {
-		method: "POST",
-		headers: {
-		  "Content-Type": "application/json"
-		},
-		body: JSON.stringify({
-			clientName: clientName,
-			createUserRequest: {
-				mobileNumber: mobileNumber,
-				emailAddress: emailAddress,
-				password: password
-			}
-		})
-	});*/
+	
   
 	const response = await request({
 		url: 'http://localhost:8080/api/vi/client/create-client',
@@ -62,10 +34,13 @@ exports.postRegisterNewCustomer = async function(req, res, next){
 		}
 	}, function (error, response, body) {
         if (!error && response.statusCode === 200) {
-            //console.log(body);
+            console.log(body);
+			var bodyJS = body;
+			var token = bodyJS.responseObject.token.data;
+			var clientCode = bodyJS.responseObject.client.clientCode;
 			//return res.json({"status": 0, "message": 'Your new SyncTracker account has been created successfully. We have sent you an email'+ 
 			//	'containing a 6-digit code. Enter the code to activate your account.'});
-			return res.redirect('/login');
+			return res.redirect('/otp/' + token + '/' + clientCode);
         }
         else {
 

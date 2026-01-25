@@ -40,3 +40,22 @@ exports.login = async function(req, res, next) {
     }
     res.end();
 }
+
+
+exports.postOTP = async function(req, res, next) {
+    const { otp1, otp2, otp3, otp4, otp5, otp6, token, clientCode } = req.body;
+    try {
+        
+		
+		try {
+			return UserService.postOTP(req, res, next);
+		} catch (err) {
+			next(err);
+		}
+		
+    } catch (err) {
+		console.log(err);
+        return res.status(400).json({status: 400, message: "General system error experienced"})
+    }
+    res.end();
+}

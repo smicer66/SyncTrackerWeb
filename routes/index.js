@@ -6,13 +6,21 @@ var UserController = require("../controllers/user.controller");
 
 /* GET home page. */
 router.get('/login', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+	console.log(req.session.client);
+	if(req.session.client!=null)
+	{
+		res.render('index', { title: 'Express' });
+	}
+	else
+	{
+		res.render('signup', { title: 'Express' });
+	}
 });
 
 
-router.get("/login1", function(req, res) {
+/*router.get("/login", function(req, res) {
   res.render('index', { title: 'Express' });
-});
+});*/
 
 router.post("/login", UserController.login);
 
@@ -33,9 +41,13 @@ router.post("/sign-up", RegisterController.register);
 });*/
 
 
-router.get("/otp", function(req, res) {
-  res.render('otp', { title: 'Express' });
+router.get("/otp/:token/:clientCode", function(req, res) {
+	var token = req.params.token;
+	res.render('otp', { token: token, clientCode: clientCode });
 });
+
+
+router.post("/otp/:token/:clientCode", UserController.postOTP);
 
 
 router.get("/dashboard", function(req, res) {
