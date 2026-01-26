@@ -1,4 +1,6 @@
+var session = require('express-session');
 var UserService = require("../services/user.service");
+
 
 
 exports.login = async function(req, res, next) {
@@ -25,7 +27,10 @@ exports.login = async function(req, res, next) {
 		});*/
 		
 		try {
+			console.log("<<<<<<<<<<<<<<<<<<<<<<<<<");
 			//const aa = await 
+			//var client = req.session.client;
+			//console.log(client.responseObject.client);
 			return UserService.postLogin(req, res, next);
 			//console.log(">>>>>>d>>>>>>>>>>>>");
 			//console.log(res.json());

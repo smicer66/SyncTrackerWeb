@@ -12,7 +12,8 @@ var SessionService = require("./services/session.service");
 var app = express();
 
 
-app.use(session({ secret: 'keyboard cat',resave:false,saveUninitialized:false, cookie: { maxAge: 60000 }}));
+app.use(session({ secret: 'keyboard cat',resave:false,saveUninitialized:true, cookie: { maxAge: 60000 }}));
+
 app.use(mw({ app: app, option2: '2' }))
 
 // view engine setup

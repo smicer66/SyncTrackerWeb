@@ -1,3 +1,4 @@
+var session = require('express-session');
 var express = require('express');
 var router = express.Router();
 
@@ -43,6 +44,7 @@ router.post("/sign-up", RegisterController.register);
 
 router.get("/otp/:token/:clientCode", function(req, res) {
 	var token = req.params.token;
+	var clientCode = req.params.clientCode;
 	res.render('otp', { token: token, clientCode: clientCode });
 });
 

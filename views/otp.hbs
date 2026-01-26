@@ -13,9 +13,9 @@
         <p class="text-sm text-gray-500">Enter the 6-digit code sent to your mobile</p>
       </div>
 
-      <form method="POST" action="/otp/{{token}}" class="space-y-6">
+      <form method="POST" action="/otp/{{token}}/{{clientCode}}" class="space-y-6">
 		<input type="hidden" name="token" value="{{token}}">
-		<input type="hidden" name="clientCode" value="{{clientCode}}">clientCode
+		<input type="hidden" name="clientCode" value="{{clientCode}}">
         <div class="flex justify-between gap-2">
           <input maxlength="1" name="otp1" inputmode="numeric" pattern="[0-9]*" class="w-12 h-12 text-center text-lg border rounded-lg focus:outline-none focus:ring" />
           <input maxlength="1" name="otp2" inputmode="numeric" pattern="[0-9]*" class="w-12 h-12 text-center text-lg border rounded-lg focus:outline-none focus:ring" />

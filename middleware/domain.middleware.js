@@ -9,7 +9,7 @@ module.exports = function(options) {
 		next();
 	}*/
 	return function(req, res, next) {
-		console.log('session id created');
+		//console.log('session id created');
 		/*app.use(session(
 			{ 
 				name:'domain',
@@ -27,7 +27,7 @@ module.exports = function(options) {
 				}
 			}
 		));*/
-		console.log(req.session);
+		//console.log(req.session);
 		if(req.hostname==='localhost')
 		{
 			req.session.client = undefined;
@@ -40,15 +40,15 @@ module.exports = function(options) {
 		
 			if(req.session!=undefined && req.session.domain!=undefined)
 			{
-				console.log("Domain session already exists for this domain...");
-				console.log(req.session.domain);
-				console.log(req.session.client);
+				//console.log("Domain session already exists for this domain...");
+				//console.log(req.session.domain);
+				//console.log(req.session.client);
 				//req.session.destroy();
 			}
 			else
 			{
 				//console.log(req);
-				console.log("Creating domain session for the domain " + req.hostname);
+				//console.log("Creating domain session for the domain " + req.hostname);
 				req.session.domain = req.hostname;
 				SessionService.getClientData(req, res, next, req.hostname);/*.then((bodyJS)=>{
 					console.log("bodyJS...");
