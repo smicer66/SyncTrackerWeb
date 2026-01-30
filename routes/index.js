@@ -4,6 +4,7 @@ var router = express.Router();
 
 var RegisterController = require("../controllers/register.controller");
 var UserController = require("../controllers/user.controller");
+var EmploymentController = require("../controllers/employment.controller");
 
 /* GET home page. */
 router.get('/login', function(req, res, next) {
@@ -30,6 +31,9 @@ router.get("/sign-up", function(req, res) {
   res.render('signup', { title: 'Express' });
 });
 
+router.get("/admin/employees", EmploymentController.getEmployeeList);function(req, res) {
+  res.render('admin/employment/employees', { title: 'Express' });
+});
 
 router.post("/sign-up", RegisterController.register);
 /*router.get("/sign-up", function(req, res) {
