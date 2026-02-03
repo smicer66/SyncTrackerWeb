@@ -8,7 +8,7 @@ var EmploymentController = require("../controllers/employment.controller");
 
 /* GET home page. */
 router.get('/login', function(req, res, next) {
-	console.log(req.session.client);
+	//console.log(req.session.client);
 	if(req.session.client!=null)
 	{
 		res.render('index', { title: 'Express' });
@@ -31,22 +31,21 @@ router.get("/sign-up", function(req, res) {
   res.render('signup', { title: 'Express' });
 });
 
-router.get("/admin/employees", EmploymentController.getEmployeeList);function(req, res) {
-  res.render('admin/employment/employees', { title: 'Express' });
-});
+router.get("/admin/employees", EmploymentController.getEmployeeList);
+router.post("/admin/create-new-employee", EmploymentController.postCreateNewEmployee);
 
 router.post("/sign-up", RegisterController.register);
 /*router.get("/sign-up", function(req, res) {
   const { email, password } = req.body;
 
   // TODO: authenticate user
-  console.log(email, password);
+  //console.log(email, password);
 
   res.send("Login submitted");
 });*/
 
 
-router.get("/otp/:token/:clientCode", function(req, res) {
+router.get("/otp/:token/:clientCode", session, function(req, res) {
 	var token = req.params.token;
 	var clientCode = req.params.clientCode;
 	res.render('otp', { token: token, clientCode: clientCode });
@@ -57,6 +56,7 @@ router.post("/otp/:token/:clientCode", UserController.postOTP);
 
 
 router.get("/dashboard", function(req, res) {
+	//console.log(req.session);
   res.render('dashboard', { title: 'Express' });
 });
 

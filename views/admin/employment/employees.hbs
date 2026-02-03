@@ -64,7 +64,11 @@
   <link rel="stylesheet" href="../../assets/css/styles.css">
   <!-- end::GXON CSS Stylesheet -->
 
-
+	<style>
+	body{
+		color: #000 !important;
+	}
+	</style>
 
 </head>
 
@@ -1567,11 +1571,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form>
-                  <div class="mb-3">
-                    <label for="fullName" class="form-label">Full Name</label>
-                    <input type="text" class="form-control" id="fullName" placeholder="Enter full name">
-                  </div>
+                <form id="newEmployeeForm">
+                  <div class="row">
+					  <div class="col-md-6 mb-3">
+						<label for="fullName" class="form-label">First Name</label>
+						<input type="text" class="form-control" id="firstName" placeholder="Enter full name">
+					  </div>
+					  <div class="col-md-6 mb-3">
+						<label for="fullName" class="form-label">Last Name</label>
+						<input type="text" class="form-control" id="lastName" placeholder="Enter full name">
+					  </div>
+				  </div>
                   <div class="row">
                     <div class="col-md-6 mb-3">
                       <label for="email" class="form-label">Email Address</label>
@@ -1583,45 +1593,54 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <label for="department" class="form-label">Department</label>
-                      <select class="form-select" id="department">
-                        <option selected disabled>Select Department</option>
-                        <option>HR</option>
-                        <option>Development</option>
-                        <option>Sales</option>
-                        <option>Marketing</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <label for="designation" class="form-label">Designation</label>
-                      <input type="text" class="form-control" id="designation" placeholder="e.g. Software Engineer">
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <label for="joiningDate" class="form-label">Joining Date</label>
+                    <!--<div class="col-md-6 mb-3">
+                      <label for="joiningDate" class="form-label">Employment Date</label>
                       <input type="date" class="form-control flatpickr-date" id="joiningDate">
+                    </div>-->
+                    <div class="col-md-6 mb-3">
+                      <label for="phone" class="form-label">National Insurance No.</label>
+                      <input type="text" class="form-control" id="employeeSocialSecurityNo" placeholder="AA 00 00 AA A">
                     </div>
                     <div class="col-md-6 mb-3">
-                      <label for="status" class="form-label">Employment Status</label>
-                      <select class="form-select" id="status">
-                        <option>Active</option>
-                        <option>Inactive</option>
-                        <option>Probation</option>
-                      </select>
+                      <label for="phone" class="form-label">Employee Number;</label>
+                      <input type="text" class="form-control" id="employeeNo" placeholder="00/110">
                     </div>
                   </div>
-                  <div class="mb-3">
+                  <!--<div class="mb-3">
                     <label for="address" class="form-label">Address</label>
                     <textarea class="form-control" id="address" rows="2" placeholder="Enter address"></textarea>
-                  </div>
-                  <div class="mb-3">
-                    <label for="photo" class="form-label">Profile Photo</label>
-                    <input class="form-control" type="file" id="photo">
-                  </div>
+                  </div>-->
+				  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="joiningDate" class="form-label">Date of Birth</label>
+                      <input type="date" class="form-control flatpickr-date" id="dateOfBirth">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="status" class="form-label">Country of Origin</label>
+                      <select class="form-select" id="countryOfOrigin">
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="Italy">Italy</option>
+                      </select>
+                    </div>
+				  </div>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="joiningDate" class="form-label">Gender</label>
+                      <select class="form-select" id="gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="status" class="form-label">Marital Status</label>
+                      <select class="form-select" id="maritalStatus">
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                      </select>
+                    </div>
+				  </div>
                   <div class="text-end">
-                    <button type="submit" class="btn btn-success">Add Employee</button>
+                    <button class="btn btn-success">Add Employee</button>
                   </div>
                 </form>
               </div>
@@ -1667,6 +1686,33 @@
   <script src="../../assets/js/appSettings.js"></script>
   <script src="../../assets/js/main.js"></script>
   <!-- end::GXON Page Scripts -->
+  
+	<script>
+    $("#newEmployeeForm").submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "/admin/create-new-employee",
+            type: "POST",
+            data: {
+                'clientId': 1,
+                'employeeNumber': $('#employeeNo').val(),
+                'employeeSocialSecurityNo': $('#employeeSocialSecurityNo').val(),
+                'dateOfBirth': $('#dateOfBirth').val(),
+                'countryOfOrigin': $('#countryOfOrigin').val(),
+                'mobileNumber': $('#phone').val(),
+                'emailAddress': $('#email').val(),
+                'firstName': $('#firstName').val(),
+                'lastName': $('#lastName').val(),
+                'gender': $('#gender').val(),
+                'maritalStatus': $('#maritalStatus').val(),
+            },
+            success: function(data){
+                console.log(data);
+            }
+        });
+    });
+
+	</script>
 </body>
 
 </html>

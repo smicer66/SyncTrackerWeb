@@ -7,14 +7,14 @@ const request = require('request').defaults({jar: true});
 
 exports.postLogin = async function(req, res, next){
 	
-	//console.log(allData);
+	////console.log(allData);
 	var allData = req.body;
 	var username = allData.username;
 	var password = allData.password;
 	var remember = allData.remember;
 	//client = JSON.parse(client);
 	client= req.session.client;
-	//console.log(client);
+	////console.log(client);
   
 	const response = await request({
 		url: 'http://localhost:8080/api/v1/user/login',
@@ -25,7 +25,7 @@ exports.postLogin = async function(req, res, next){
 			clientCode: client.clientCode
 		}
 	}, function (error, response, body) {
-		console.log(body);
+		//console.log(body);
         if (!error && response.statusCode === 200) {
 			req.session.token = body.token;
 			req.session.save();
@@ -33,7 +33,7 @@ exports.postLogin = async function(req, res, next){
         }
         else {
 
-            console.log("error: " + error)
+            //console.log("error: " + error)
 			return res.redirect('/login');
         }
     });
@@ -50,7 +50,7 @@ exports.postLogin = async function(req, res, next){
 
 exports.postOTP = async function(req, res, next){
 	
-	//console.log(allData);
+	////console.log(allData);
 	var allData = req.body;
 	var otp1 = allData.otp1;
 	var otp2 = allData.otp2;
@@ -70,23 +70,23 @@ exports.postOTP = async function(req, res, next){
 		clientCode: clientCode,
 		tokenType: "SIGNUP"
 	};
-	console.log("data");
-	console.log(data);
+	//console.log("data");
+	//console.log(data);
   
 	const response = await request({
 		url: 'http://localhost:8080/api/v1/user/validate-token',
 		method: "POST",
 		json: data
 	}, function (error, response, body) {
-		console.log("response....");
-		console.log(response.statusCode);
+		//console.log("response....");
+		//console.log(response.statusCode);
         if (!error && response.statusCode === 200) {
 			
 			return res.redirect('/login');
         }
         else {
 
-            console.log("error: " + error)
+            //console.log("error: " + error)
 			return res.redirect('back');
         }
     });

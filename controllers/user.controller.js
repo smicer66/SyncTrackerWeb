@@ -11,8 +11,8 @@ exports.login = async function(req, res, next) {
         // create an instance of a user
 		//req, res, next
 		/*await RegisterService.postRegisterNewCustomer(req.body).then((data) => {
-			console.log("response");
-			console.log(data);
+			//console.log("response");
+			//console.log(data);
 			if(data.status==0)
 			{
 				req.session.redirectData = data;
@@ -27,20 +27,20 @@ exports.login = async function(req, res, next) {
 		});*/
 		
 		try {
-			console.log("<<<<<<<<<<<<<<<<<<<<<<<<<");
+			//console.log("<<<<<<<<<<<<<<<<<<<<<<<<<");
 			//const aa = await 
 			//var client = req.session.client;
-			//console.log(client.responseObject.client);
+			////console.log(client.responseObject.client);
 			return UserService.postLogin(req, res, next);
-			//console.log(">>>>>>d>>>>>>>>>>>>");
-			//console.log(res.json());
+			////console.log(">>>>>>d>>>>>>>>>>>>");
+			////console.log(res.json());
 			//res.status(200).json(result);
 		} catch (err) {
 			next(err);
 		}
 		
     } catch (err) {
-		console.log(err);
+		//console.log(err);
         return res.status(400).json({status: 400, message: "General system error experienced"})
     }
     res.end();
@@ -59,7 +59,7 @@ exports.postOTP = async function(req, res, next) {
 		}
 		
     } catch (err) {
-		console.log(err);
+		//console.log(err);
         return res.status(400).json({status: 400, message: "General system error experienced"})
     }
     res.end();

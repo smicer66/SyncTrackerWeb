@@ -1264,6 +1264,6 @@ if(jQuery('#dateTimeFlatpickr').length > 0 ){
 if(jQuery('.flatpickr-date').length > 0 ){
 	$(".flatpickr-date").flatpickr({
 		enableTime: false,
-		dateFormat: "Y-m-d H:i",
+		dateFormat: "Y-m-d",
 	});
 }
