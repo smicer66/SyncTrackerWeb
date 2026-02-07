@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var hbs = require('hbs');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -8,8 +9,45 @@ var session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var SessionService = require("./services/session.service");
+const moment = require('moment');
 
 var app = express();
+//var hbs = expressHbs.create({});
+
+/*hbs.handlebars.registerHelper('formatDate', function(datetime, format) {
+
+	// Use UI.registerHelper..
+	UI.registerHelper("formatDate", function(datetime, format) {
+		  if (moment) {
+			// can use other formats like 'lll' too
+			format = DateFormats[format] || format;
+			return moment(datetime).format(format);
+		  }
+		  else {
+			return datetime;
+		  }
+		}
+	);
+})*/
+
+hbs.registerHelper('formatDate', function (datetime, format) { 
+	//UI.registerHelper("formatDate", function(datetime, format) {
+	var DateFormats = {
+		short: "DD MMMM YYYY",
+		long: "dddd DD.MM.YYYY HH:mm"
+	};
+	
+		  if (moment) {
+			// can use other formats like 'lll' too
+			var format = DateFormats[format] || format;
+			return moment(datetime).format(format);
+		  }
+		  else {
+			return datetime;
+		  }
+		//}
+	//);
+});
 
 
 app.use(session({ secret: 'keyboard cat',resave:false,saveUninitialized:true, cookie: { maxAge: 60000 }}));

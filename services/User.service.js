@@ -29,7 +29,7 @@ exports.postLogin = async function(req, res, next){
         if (!error && response.statusCode === 200) {
 			req.session.token = body.token;
 			req.session.save();
-			return res.redirect('/dashboard');
+			return res.redirect('/admin/employees');
         }
         else {
 

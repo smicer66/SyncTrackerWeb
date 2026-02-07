@@ -1090,7 +1090,7 @@
         </div>
 
         <div class="row">
-
+		{{#each employeeList}}
           <div class="col-xxl-3 col-lg-4 col-md-6">
             <div class="card">
               <div class="card-header d-flex align-items-center justify-content-between border-0 pb-0 p-3">
@@ -1116,421 +1116,33 @@
                   <div class="avatar avatar-xxl rounded-4 mx-auto mb-3">
                     <img src="../../assets/images/avatar/avatar3.webp" alt="">
                   </div>
-                  <h5 class="mb-0 fw-bold">Emma Smith</h5>
-                  <p class="text-primary mb-0">UI/UX Designer</p>
+                  <h5 class="mb-0 fw-bold">{{this.firstName}} {{this.lastName}}</h5>
+                  <p class="text-primary mb-0">Employee</p>
                 </div>
                 <div class="p-3 bg-light rounded">
                   <div class="d-flex gap-3">
-                    <div class="w-50">
-                      <span class="text-1xs">Department</span>
-                      <h6 class="mb-0">Designing Team</h6>
-                    </div>
-                    <div class="w-50">
+                    <div class="w-100" style="text-align: center;">
                       <span class="text-1xs">Hired Date</span>
-                      <h6 class="mb-0">12 Aug 2020</h6>
+                      <h6 class="mb-0">{{formatDate this.createdAt "short"}}</h6>
                     </div>
                   </div>
                   <hr class="border-dashed">
                   <div class="d-grid gap-2">
-                    <span class="d-block text-dark">
+                    <span class="d-block text-dark" style="text-align: center;">
                       <i class="fi fi-rr-envelope me-2 text-primary"></i>
-                      Info@example@mail.com
+                      {{this.emailAddress}}
                     </span>
-                    <span class="d-block text-dark">
+                    <span class="d-block text-dark" style="text-align: center;">
                       <i class="fi fi-rr-phone-call me-2 text-primary"></i>
-                      +01 987 654 3210
+                      {{this.mobileNumber}}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="col-xxl-3 col-lg-4 col-md-6">
-            <div class="card bg-success-subtle border-0">
-              <div class="card-header d-flex align-items-center justify-content-between border-0 pb-0 p-3">
-                <span class="badge bg-success-subtle text-success">Active</span>
-                <div class="clearfix">
-                  <div class="btn-group">
-                    <button class="btn btn-white btn-sm btn-shadow btn-icon waves-effect dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fi fi-rr-menu-dots"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                      <li>
-                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body p-2 pt-0">
-                <div class="text-center mb-3">
-                  <div class="avatar avatar-xxl rounded-4 mx-auto mb-3">
-                    <img src="../../assets/images/avatar/avatar1.webp" alt="">
-                  </div>
-                  <h5 class="mb-0 fw-bold">William Johnson</h5>
-                  <p class="text-primary mb-0">Front-End Developer</p>
-                </div>
-                <div class="p-3 bg-body rounded">
-                  <div class="d-flex gap-3">
-                    <div class="w-50">
-                      <span class="text-1xs">Department</span>
-                      <h6 class="mb-0">Designing Team</h6>
-                    </div>
-                    <div class="w-50">
-                      <span class="text-1xs">Hired Date</span>
-                      <h6 class="mb-0">12 Aug 2020</h6>
-                    </div>
-                  </div>
-                  <hr class="border-dashed">
-                  <div class="d-grid gap-2">
-                    <span class="d-block text-dark">
-                      <i class="fi fi-rr-envelope me-2 text-primary"></i>
-                      Info@example@mail.com
-                    </span>
-                    <span class="d-block text-dark">
-                      <i class="fi fi-rr-phone-call me-2 text-primary"></i>
-                      +01 987 654 3210
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xxl-3 col-lg-4 col-md-6">
-            <div class="card">
-              <div class="card-header d-flex align-items-center justify-content-between border-0 pb-0 p-3">
-                <span class="badge bg-danger-subtle text-danger">On Leave</span>
-                <div class="clearfix">
-                  <div class="btn-group">
-                    <button class="btn btn-white btn-sm btn-shadow btn-icon waves-effect dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fi fi-rr-menu-dots"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                      <li>
-                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body p-2 pt-0">
-                <div class="text-center mb-3">
-                  <div class="avatar avatar-xxl rounded-4 mx-auto mb-3">
-                    <img src="../../assets/images/avatar/avatar8.webp" alt="">
-                  </div>
-                  <h5 class="mb-0 fw-bold">Benjamin Martinez</h5>
-                  <p class="text-primary mb-0">Web Designer</p>
-                </div>
-                <div class="p-3 bg-light rounded">
-                  <div class="d-flex gap-3">
-                    <div class="w-50">
-                      <span class="text-1xs">Department</span>
-                      <h6 class="mb-0">Designing Team</h6>
-                    </div>
-                    <div class="w-50">
-                      <span class="text-1xs">Hired Date</span>
-                      <h6 class="mb-0">12 Aug 2020</h6>
-                    </div>
-                  </div>
-                  <hr class="border-dashed">
-                  <div class="d-grid gap-2">
-                    <span class="d-block text-dark">
-                      <i class="fi fi-rr-envelope me-2 text-primary"></i>
-                      Info@example@mail.com
-                    </span>
-                    <span class="d-block text-dark">
-                      <i class="fi fi-rr-phone-call me-2 text-primary"></i>
-                      +01 987 654 3210
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xxl-3 col-lg-4 col-md-6">
-            <div class="card">
-              <div class="card-header d-flex align-items-center justify-content-between border-0 pb-0 p-3">
-                <span class="badge bg-success-subtle text-success">Active</span>
-                <div class="clearfix">
-                  <div class="btn-group">
-                    <button class="btn btn-white btn-sm btn-shadow btn-icon waves-effect dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fi fi-rr-menu-dots"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                      <li>
-                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body p-2 pt-0">
-                <div class="text-center mb-3">
-                  <div class="avatar avatar-xxl rounded-4 mx-auto mb-3">
-                    <img src="../../assets/images/avatar/avatar7.webp" alt="">
-                  </div>
-                  <h5 class="mb-0 fw-bold">Olivia Clark</h5>
-                  <p class="text-primary mb-0">Data Analyst</p>
-                </div>
-                <div class="p-3 bg-light rounded">
-                  <div class="d-flex gap-3">
-                    <div class="w-50">
-                      <span class="text-1xs">Department</span>
-                      <h6 class="mb-0">Designing Team</h6>
-                    </div>
-                    <div class="w-50">
-                      <span class="text-1xs">Hired Date</span>
-                      <h6 class="mb-0">12 Aug 2020</h6>
-                    </div>
-                  </div>
-                  <hr class="border-dashed">
-                  <div class="d-grid gap-2">
-                    <span class="d-block text-dark">
-                      <i class="fi fi-rr-envelope me-2 text-primary"></i>
-                      Info@example@mail.com
-                    </span>
-                    <span class="d-block text-dark">
-                      <i class="fi fi-rr-phone-call me-2 text-primary"></i>
-                      +01 987 654 3210
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xxl-3 col-lg-4 col-md-6">
-            <div class="card">
-              <div class="card-header d-flex align-items-center justify-content-between border-0 pb-0 p-3">
-                <span class="badge bg-danger-subtle text-success">On Leave</span>
-                <div class="clearfix">
-                  <div class="btn-group">
-                    <button class="btn btn-white btn-sm btn-shadow btn-icon waves-effect dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fi fi-rr-menu-dots"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                      <li>
-                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body p-2 pt-0">
-                <div class="text-center mb-3">
-                  <div class="avatar avatar-xxl rounded-4 mx-auto mb-3">
-                    <img src="../../assets/images/avatar/avatar5.webp" alt="">
-                  </div>
-                  <h5 class="mb-0 fw-bold">Ava Lewis</h5>
-                  <p class="text-primary mb-0">Front-End Developer</p>
-                </div>
-                <div class="p-3 bg-light rounded">
-                  <div class="d-flex gap-3">
-                    <div class="w-50">
-                      <span class="text-1xs">Department</span>
-                      <h6 class="mb-0">Designing Team</h6>
-                    </div>
-                    <div class="w-50">
-                      <span class="text-1xs">Hired Date</span>
-                      <h6 class="mb-0">12 Aug 2020</h6>
-                    </div>
-                  </div>
-                  <hr class="border-dashed">
-                  <div class="d-grid gap-2">
-                    <span class="d-block text-dark">
-                      <i class="fi fi-rr-envelope me-2 text-primary"></i>
-                      Info@example@mail.com
-                    </span>
-                    <span class="d-block text-dark">
-                      <i class="fi fi-rr-phone-call me-2 text-primary"></i>
-                      +01 987 654 3210
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xxl-3 col-lg-4 col-md-6">
-            <div class="card">
-              <div class="card-header d-flex align-items-center justify-content-between border-0 pb-0 p-3">
-                <span class="badge bg-danger-subtle text-danger">On Leave</span>
-                <div class="clearfix">
-                  <div class="btn-group">
-                    <button class="btn btn-white btn-sm btn-shadow btn-icon waves-effect dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fi fi-rr-menu-dots"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                      <li>
-                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body p-2 pt-0">
-                <div class="text-center mb-3">
-                  <div class="avatar avatar-xxl rounded-4 mx-auto mb-3">
-                    <img src="../../assets/images/avatar/avatar2.webp" alt="">
-                  </div>
-                  <h5 class="mb-0 fw-bold">Isabella Walker</h5>
-                  <p class="text-primary mb-0">UI/UX Designer</p>
-                </div>
-                <div class="p-3 bg-light rounded">
-                  <div class="d-flex gap-3">
-                    <div class="w-50">
-                      <span class="text-1xs">Department</span>
-                      <h6 class="mb-0">Designing Team</h6>
-                    </div>
-                    <div class="w-50">
-                      <span class="text-1xs">Hired Date</span>
-                      <h6 class="mb-0">12 Aug 2020</h6>
-                    </div>
-                  </div>
-                  <hr class="border-dashed">
-                  <div class="d-grid gap-2">
-                    <span class="d-block text-dark">
-                      <i class="fi fi-rr-envelope me-2 text-primary"></i>
-                      Info@example@mail.com
-                    </span>
-                    <span class="d-block text-dark">
-                      <i class="fi fi-rr-phone-call me-2 text-primary"></i>
-                      +01 987 654 3210
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xxl-3 col-lg-4 col-md-6">
-            <div class="card">
-              <div class="card-header d-flex align-items-center justify-content-between border-0 pb-0 p-3">
-                <span class="badge bg-success-subtle text-success">Active</span>
-                <div class="clearfix">
-                  <div class="btn-group">
-                    <button class="btn btn-white btn-sm btn-shadow btn-icon waves-effect dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fi fi-rr-menu-dots"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                      <li>
-                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body p-2 pt-0">
-                <div class="text-center mb-3">
-                  <div class="avatar avatar-xxl rounded-4 mx-auto mb-3">
-                    <img src="../../assets/images/avatar/avatar6.webp" alt="">
-                  </div>
-                  <h5 class="mb-0 fw-bold">Alexander Brown</h5>
-                  <p class="text-primary mb-0">Data Analyst</p>
-                </div>
-                <div class="p-3 bg-light rounded">
-                  <div class="d-flex gap-3">
-                    <div class="w-50">
-                      <span class="text-1xs">Department</span>
-                      <h6 class="mb-0">Designing Team</h6>
-                    </div>
-                    <div class="w-50">
-                      <span class="text-1xs">Hired Date</span>
-                      <h6 class="mb-0">12 Aug 2020</h6>
-                    </div>
-                  </div>
-                  <hr class="border-dashed">
-                  <div class="d-grid gap-2">
-                    <span class="d-block text-dark">
-                      <i class="fi fi-rr-envelope me-2 text-primary"></i>
-                      Info@example@mail.com
-                    </span>
-                    <span class="d-block text-dark">
-                      <i class="fi fi-rr-phone-call me-2 text-primary"></i>
-                      +01 987 654 3210
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xxl-3 col-lg-4 col-md-6">
-            <div class="card bg-danger-subtle border-0">
-              <div class="card-header d-flex align-items-center justify-content-between border-0 pb-0 p-3">
-                <span class="badge bg-danger-subtle text-danger">On Leave</span>
-                <div class="clearfix">
-                  <div class="btn-group">
-                    <button class="btn btn-white btn-sm btn-shadow btn-icon waves-effect dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fi fi-rr-menu-dots"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                      <li>
-                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body p-2 pt-0">
-                <div class="text-center mb-3">
-                  <div class="avatar avatar-xxl rounded-4 mx-auto mb-3">
-                    <img src="../../assets/images/avatar/avatar4.webp" alt="">
-                  </div>
-                  <h5 class="mb-0 fw-bold">Sophia Hall</h5>
-                  <p class="text-primary mb-0">Front-End Developer</p>
-                </div>
-                <div class="p-3 bg-body rounded">
-                  <div class="d-flex gap-3">
-                    <div class="w-50">
-                      <span class="text-1xs">Department</span>
-                      <h6 class="mb-0">Designing Team</h6>
-                    </div>
-                    <div class="w-50">
-                      <span class="text-1xs">Hired Date</span>
-                      <h6 class="mb-0">12 Aug 2020</h6>
-                    </div>
-                  </div>
-                  <hr class="border-dashed">
-                  <div class="d-grid gap-2">
-                    <span class="d-block text-dark">
-                      <i class="fi fi-rr-envelope me-2 text-primary"></i>
-                      Info@example@mail.com
-                    </span>
-                    <span class="d-block text-dark">
-                      <i class="fi fi-rr-phone-call me-2 text-primary"></i>
-                      +01 987 654 3210
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+		{{/each}}
+          
         </div>
 
         <div class="row">
@@ -1575,21 +1187,21 @@
                   <div class="row">
 					  <div class="col-md-6 mb-3">
 						<label for="fullName" class="form-label">First Name</label>
-						<input type="text" class="form-control" id="firstName" placeholder="Enter full name">
+						<input type="text" class="form-control" value="Jerry" id="firstName" placeholder="Enter full name">
 					  </div>
 					  <div class="col-md-6 mb-3">
 						<label for="fullName" class="form-label">Last Name</label>
-						<input type="text" class="form-control" id="lastName" placeholder="Enter full name">
+						<input type="text" class="form-control" value="T" id="lastName" placeholder="Enter full name">
 					  </div>
 				  </div>
                   <div class="row">
                     <div class="col-md-6 mb-3">
                       <label for="email" class="form-label">Email Address</label>
-                      <input type="email" class="form-control" id="email" placeholder="example@email.com">
+                      <input type="email" class="form-control" value="example@email.com" id="email" placeholder="example@email.com">
                     </div>
                     <div class="col-md-6 mb-3">
                       <label for="phone" class="form-label">Phone Number</label>
-                      <input type="tel" class="form-control" id="phone" placeholder="+91 9876543210">
+                      <input type="tel" class="form-control" value="+448011212" id="phone" placeholder="+91 9876543210">
                     </div>
                   </div>
                   <div class="row">
@@ -1599,11 +1211,11 @@
                     </div>-->
                     <div class="col-md-6 mb-3">
                       <label for="phone" class="form-label">National Insurance No.</label>
-                      <input type="text" class="form-control" id="employeeSocialSecurityNo" placeholder="AA 00 00 AA A">
+                      <input type="text" class="form-control" value="9010212" id="employeeSocialSecurityNo" placeholder="AA 00 00 AA A">
                     </div>
                     <div class="col-md-6 mb-3">
                       <label for="phone" class="form-label">Employee Number;</label>
-                      <input type="text" class="form-control" id="employeeNo" placeholder="00/110">
+                      <input type="text" class="form-control" value="920323" id="employeeNo" placeholder="00/110">
                     </div>
                   </div>
                   <!--<div class="mb-3">
@@ -1613,12 +1225,12 @@
 				  <div class="row">
                     <div class="col-md-6 mb-3">
                       <label for="joiningDate" class="form-label">Date of Birth</label>
-                      <input type="date" class="form-control flatpickr-date" id="dateOfBirth">
+                      <input type="date" class="form-control flatpickr-date" value="1980-01-01" id="dateOfBirth">
                     </div>
                     <div class="col-md-6 mb-3">
                       <label for="status" class="form-label">Country of Origin</label>
                       <select class="form-select" id="countryOfOrigin">
-                        <option value="United Kingdom">United Kingdom</option>
+                        <option selected value="United Kingdom">United Kingdom</option>
                         <option value="Italy">Italy</option>
                       </select>
                     </div>
@@ -1627,7 +1239,7 @@
                     <div class="col-md-6 mb-3">
                       <label for="joiningDate" class="form-label">Gender</label>
                       <select class="form-select" id="gender">
-                        <option value="Male">Male</option>
+                        <option selected value="Male">Male</option>
                         <option value="Female">Female</option>
                       </select>
                     </div>
@@ -1635,7 +1247,7 @@
                       <label for="status" class="form-label">Marital Status</label>
                       <select class="form-select" id="maritalStatus">
                         <option value="Single">Single</option>
-                        <option value="Married">Married</option>
+                        <option selected value="Married">Married</option>
                       </select>
                     </div>
 				  </div>
@@ -1688,6 +1300,10 @@
   <!-- end::GXON Page Scripts -->
   
 	<script>
+	
+	console.log(22);
+	
+	
     $("#newEmployeeForm").submit(function(e) {
         e.preventDefault();
         $.ajax({
@@ -1703,12 +1319,19 @@
                 'emailAddress': $('#email').val(),
                 'firstName': $('#firstName').val(),
                 'lastName': $('#lastName').val(),
-                'gender': $('#gender').val(),
-                'maritalStatus': $('#maritalStatus').val(),
+                'gender': $('#gender').val().toUpperCase(),
+                'maritalStatus': $('#maritalStatus').val().toUpperCase(),
             },
             success: function(data){
                 console.log(data);
-            }
+				if(data.statusCode==0)
+				{
+					$('#addEmployeeModal').modal('hide');
+				}
+            },
+			error: function(err){
+				console.log(err);
+			}
         });
     });
 

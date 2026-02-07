@@ -2,7 +2,11 @@ var session = require('express-session');
 var http = require('http');
 var querystring = require('querystring');
 const request = require('request').defaults({jar: true});
+const moment = require('moment');
+//const handlebars=require('handlebars');
 //var fetch = require("node-fetch");
+
+
 
 
 exports.getEmployeeList = async function(req, res, next){
@@ -15,7 +19,20 @@ exports.getEmployeeList = async function(req, res, next){
 		//console.log(body);
 		//console.log(response.statusCode);
 		//console.log(req.session);
-		return res.render('admin/employment/employees', { title: 'Express' });
+		var employeeList = [];
+		var bodyJS = JSON.parse(body);
+		if(bodyJS.statusCode==0)
+		{
+			employeeList = bodyJS.responseObject.employeeBioDataList;
+			employeeList = employeeList.slice(0, 12);
+		}
+		else
+			employeeList = [];
+		
+		
+		console.log(employeeList);
+		
+		return res.render('admin/employment/employees', { employeeList: employeeList });
 		/*if (!error && response.statusCode === 200) {
 			
 			return res.redirect('/login');
@@ -65,7 +82,7 @@ exports.postCreateNewEmployee = async function(req, res, next){
 	
   
 	const response = await request({
-		url: 'http://localhost:8080/api/vi/client/create-new-employee',
+		url: 'http://localhost:8080/api/v1/employment/create-new-employee',
 		method: "POST",
 		headers: {"Authorization": "Bearer " + req.session.token},
 		json: {
@@ -79,26 +96,31 @@ exports.postCreateNewEmployee = async function(req, res, next){
 			emailAddress: emailAddress,
 			firstName: firstName,
 			lastName: lastName,
-			middleName: middleName,
+			//middleName: middleName,
 			gender: gender,
 			maritalStatus: maritalStatus,
-			title: title
+			//title: title
 			
 		}
 	}, function (error, response, body) {
+		console.log([error, response, body]);
         if (!error && response.statusCode === 200) {
-            //console.log(body);
+            console.log(body);
 			var bodyJS = body;
-			var token = bodyJS.responseObject.token.data;
-			var clientCode = bodyJS.responseObject.client.clientCode;
-			return res.redirect('/otp/' + token + '/' + clientCode);
+			
+			//return bodyJS;
+			res.writeHead(200, { 'Content-Type': 'application/json' });
+			res.write(JSON.stringify(body));
+			res.end();
         }
         else {
 
             //console.log("error: " + error);
-			return res.redirect('/sign-up');
+			return;
         }
     });
 
 	return;
 }
+
+
