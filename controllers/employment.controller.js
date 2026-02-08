@@ -50,10 +50,11 @@ exports.getEmployeeLeaveRequest = async function(req, res, next) {
 		//console.log(client);
 		client = JSON.parse(client);
 		//console.log(client.responseObject.client.clientId);
-		await EmploymentService.getEmployeeList(req, res, next, (err, employeeList)=>{
+		await EmploymentService.getEmployeeLeaveDashboardData(req, res, next, (err, leaveData)=>{
 			
-			
-			return res.render('admin/employment/leave', { employeeList: employeeList });
+			console.log("leaveData...");
+			console.log(leaveData);
+			return res.render('admin/employment/leave', leaveData);
 		});
 		//return res.render('admin/employment/leave', {  });
 	} catch (err) {

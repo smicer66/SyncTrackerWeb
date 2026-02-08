@@ -50,6 +50,25 @@ hbs.registerHelper('formatDate', function (datetime, format) {
 });
 
 
+hbs.registerHelper('ifEq', function (a, b, options) {
+  if (a === b) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
+
+hbs.registerHelper('compare', function (a, operator, b, options) {
+  switch (operator) {
+    case '==': return a == b ? options.fn(this) : options.inverse(this);
+    case '===': return a === b ? options.fn(this) : options.inverse(this);
+    case '!=': return a != b ? options.fn(this) : options.inverse(this);
+    case '>': return a > b ? options.fn(this) : options.inverse(this);
+    case '<': return a < b ? options.fn(this) : options.inverse(this);
+    default: return options.inverse(this);
+  }
+});
+
 app.use(session({ secret: 'keyboard cat',resave:false,saveUninitialized:true, cookie: { maxAge: 60000 }}));
 console.log(">>>>>>>>>>>>");
 app.use(mw({ app: app, option2: '2' }))

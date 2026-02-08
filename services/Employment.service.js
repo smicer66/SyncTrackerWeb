@@ -180,3 +180,40 @@ exports.postEmployeeLeaveRequest = async function(req, res, next){
 	return;
 }
 
+exports.getEmployeeLeaveDashboardData = function getEmployeeList(req, res, next, callback){
+	
+	const response = request({
+		url: 'http://localhost:8080/api/v1/employment/get-employee-leave-dashboard/1',
+		headers: {"Authorization": "Bearer " + req.session.token},
+		method: "GET"
+	}, function (error, response, body) {
+		console.log("body....");
+		console.log(body);
+		//console.log(response.statusCode);
+		//console.log(req.session);
+		var employeeLeaveRequestList = [];
+		var currentEmployeeLeaveHours = 0;
+		var plannedEmployeeLeaveHours = 0;
+		var unPlannedEmployeeLeaveHours = 0;
+		var pendingEmployeeLeaveHours = 0;
+		var bodyJS = JSON.parse(body);
+		if(bodyJS.statusCode==0)
+		{
+			employeeLeaveRequestList = bodyJS.responseObject.employeeLeaveRequestList;
+			var currentEmployeeLeaveHours = bodyJS.responseObject.currentEmployeeLeaveHours;
+			var plannedEmployeeLeaveHours = bodyJS.responseObject.plannedEmployeeLeaveHours;
+			var unPlannedEmployeeLeaveHours = bodyJS.responseObject.unPlannedEmployeeLeaveHours;
+			var pendingEmployeeLeaveHours = bodyJS.responseObject.pendingEmployeeLeaveHours;
+		}
+		console.log("employeeLeaveRequestList....");
+		console.log(employeeLeaveRequestList);
+		
+		
+		return callback(null, {employeeLeaveRequestList: employeeLeaveRequestList, currentEmployeeLeaveHours: currentEmployeeLeaveHours, 
+			plannedEmployeeLeaveHours: plannedEmployeeLeaveHours, unPlannedEmployeeLeaveHours: unPlannedEmployeeLeaveHours, pendingEmployeeLeaveHours: pendingEmployeeLeaveHours, 
+			pendingEmployeeLeaveHours: pendingEmployeeLeaveHours});
+	});
+	
+	//return response.json();
+}
+
