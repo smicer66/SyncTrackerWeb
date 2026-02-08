@@ -1,0 +1,59 @@
+<div class="modal fade" id="addLeaveModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+	<div class="modal-content">
+	  <div class="modal-header py-3">
+		<h5 class="modal-title">Add Leave Request</h5>
+		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	  </div>
+	  <div class="modal-body">
+		<form id="createLeave">
+		  <div class="mb-3">
+			<label for="employeeName" class="form-label">Employee Name</label>
+			<select class="form-select" id="employeeName">
+			  <option selected disabled>Select Employee</option>
+			  {{#each employeeList}}
+			  <option value="{{this.employeeId}}">{{this.firstName}} {{this.lastName}}</option>
+			  {{/each}}
+			</select>
+		  </div>
+		  <div class="mb-3">
+			<label for="leaveType" class="form-label">Leave Type</label>
+			<select class="form-select" id="leaveType">
+			  <option selected disabled>Select leave type</option>
+			  <option value="CASUAL_LEAVE">Casual Leave</option>
+			  <option value="SICK_LEAVE">Sick Leave</option>
+			  <option value="ANNUAL_LEAVE">Annual Leave</option>
+			  <option value="MATERNITY_LEAVE">Maternity Leave</option>
+			  <option value="GARDEN_LEAVE">Casual Leave</option>
+			  <option value="PATERNITY_LEAVE">Paternity Leave</option>
+			  <option value="CARER_LEAVE">Carer Leave</option>
+			  <option value="NEONATAL_CARE_LEAVE">Neonatal Care Leave</option>
+			  <option value="STUDY_LEAVE">Study Leave</option>
+			  <option value="EMERGENCY_LEAVE">Emergency Leave</option>
+			  <option value="PUBLIC_DUTY_LEAVE">Public Duty Leave</option>
+			  <option value="COMPASSIONATE_LEAVE">Compassionate Leave</option>
+			  <option value="SABBATICAL_LEAVE">Sabbatical Leave</option>
+			  <option value="GARDEN_LEAVE">Garden Leave</option>
+			  <option value="HOURLY_LEAVE">Hourly Leave</option>
+			</select>
+		  </div>
+		  <div class="mb-3">
+			<label for="flatpickr_range" class="form-label">Leave Starts On</label>
+			<input type="datetime-local" id="startDate" class="form-control" required>
+		  </div>
+		  <div class="mb-3">
+			<label for="flatpickr_range" class="form-label">Leave Ends On</label>
+			<input type="datetime-local" id="endDate" class="form-control" required>
+		  </div>
+		  <div class="mb-3">
+			<label for="leaveReason" class="form-label">Reason</label>
+			<textarea class="form-control" id="leaveReason" rows="3" placeholder="Enter leave reason"></textarea>
+		  </div>
+		  <div class="text-end">
+			<button type="submit" class="btn btn-success">Submit Leave</button>
+		  </div>
+		</form>
+	  </div>
+	</div>
+  </div>
+</div>

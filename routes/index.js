@@ -34,6 +34,7 @@ router.get("/sign-up", function(req, res) {
 router.get("/admin/employees", EmploymentController.getEmployeeList);
 router.post("/admin/create-new-employee", EmploymentController.postCreateNewEmployee);
 router.get("/admin/employee-leave-request", EmploymentController.getEmployeeLeaveRequest);
+router.post("/admin/create-new-employee-leave-request", EmploymentController.postEmployeeLeaveRequest);
 
 router.post("/sign-up", RegisterController.register);
 /*router.get("/sign-up", function(req, res) {
