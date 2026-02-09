@@ -73,3 +73,29 @@ exports.postEmployeeLeaveRequest = async function(req, res, next) {
 	}
 	
 }
+
+
+exports.postUpdateEmployeeLeaveRequestStatus = async function(req, res, next) {
+	try {
+		return EmploymentService.postUpdateEmployeeLeaveRequestStatus(req, res, next);
+	} catch (err) {
+		
+		console.log(err);
+		next(err);
+	}
+	
+}
+
+
+exports.deleteUpdateEmployeeLeaveRequest = async function(req, res, next) {
+	try {
+		return EmploymentService.deleteUpdateEmployeeLeaveRequest(req, res, next);
+	} catch (err) {
+		
+		console.log(err);
+		next(err);
+	}
+	
+}
+
+

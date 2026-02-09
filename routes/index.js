@@ -35,6 +35,8 @@ router.get("/admin/employees", EmploymentController.getEmployeeList);
 router.post("/admin/create-new-employee", EmploymentController.postCreateNewEmployee);
 router.get("/admin/employee-leave-request", EmploymentController.getEmployeeLeaveRequest);
 router.post("/admin/create-new-employee-leave-request", EmploymentController.postEmployeeLeaveRequest);
+router.post("/admin/update-employee-leave-request-status", EmploymentController.postUpdateEmployeeLeaveRequestStatus);
+router.delete("/admin/delete-employee-leave-request/:id", EmploymentController.deleteUpdateEmployeeLeaveRequest);
 
 router.post("/sign-up", RegisterController.register);
 /*router.get("/sign-up", function(req, res) {

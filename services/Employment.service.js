@@ -128,15 +128,13 @@ exports.postCreateNewEmployee = async function(req, res, next){
 }
 
 
-exports.postEmployeeLeaveRequest = async function(req, res, next){
+exports.postUpdateEmployeeLeaveRequestStatus = async function(req, res, next){
 	
 	//console.log(allData);
 	var allData = req.body;
-	var employeeId = allData.employeeId;
-	var leaveType = allData.leaveType;
-	var leaveStartDate = allData.startDate;
-	var leaveEndDate = allData.endDate;
-	var leaveDescription = allData.leaveReason;
+	var employeeLeaveRequestId = allData.employeeLeaveRequestId;
+	var employeeLeaveRequestStatus = allData.employeeLeaveRequestStatus;
+	
 	var client = req.session.client;
 	console.log(client);
 	client = JSON.parse(client);
@@ -147,16 +145,13 @@ exports.postEmployeeLeaveRequest = async function(req, res, next){
 	
   
 	const response = await request({
-		url: 'http://localhost:8080/api/v1/employment/create-new-employee-leave-request',
+		url: 'http://localhost:8080/api/v1/employment/update-employee-leave-request-status',
 		method: "POST",
 		headers: {"Authorization": "Bearer " + req.session.token},
 		json: {
 			clientId: clientId,
-			employeeId: employeeId,
-			leaveType: leaveType,
-			leaveStartDate: leaveStartDate,
-			leaveEndDate: leaveEndDate,
-			leaveDescription: leaveDescription
+			employeeLeaveRequestId: employeeLeaveRequestId,
+			employeeLeaveRequestStatus: employeeLeaveRequestStatus
 			
 		}
 	}, function (error, response, body) {
@@ -179,6 +174,50 @@ exports.postEmployeeLeaveRequest = async function(req, res, next){
 
 	return;
 }
+
+
+
+exports.deleteUpdateEmployeeLeaveRequest = async function(req, res, next){
+	
+	//console.log(allData);
+	var allData = req.params;
+	var employeeLeaveRequestId = allData.id;
+	
+	var client = req.session.client;
+	console.log(client);
+	client = JSON.parse(client);
+	console.log(client.responseObject.client.clientId);
+	//console.log(client);
+	var clientId = client.responseObject.client.clientId;
+	
+	
+  
+	const response = await request({
+		url: 'http://localhost:8080/api/v1/employment/delete-employee-leave-request/' + employeeLeaveRequestId,
+		method: "GET",
+		headers: {"Authorization": "Bearer " + req.session.token}
+	}, function (error, response, body) {
+		console.log([error, response, body]);
+        if (!error && response.statusCode === 200) {
+            console.log(body);
+			var bodyJS = body;
+			
+			//return bodyJS;
+			res.writeHead(200, { 'Content-Type': 'application/json' });
+			res.write(JSON.stringify(body));
+			res.end();
+        }
+        else {
+
+            //console.log("error: " + error);
+			return;
+        }
+    });
+
+	return;
+}
+
+
 
 exports.getEmployeeLeaveDashboardData = function getEmployeeList(req, res, next, callback){
 	

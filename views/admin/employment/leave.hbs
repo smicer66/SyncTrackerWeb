@@ -1189,21 +1189,21 @@
 								{{#compare this.employeeLeaveRequestStatus "===" "Pending"}}
                               <a class="dropdown-item" href="javascript:void(0);" data-class="btn-outline-light" data-selected="true">Pending</a>
 								{{else}}
-                              <a class="dropdown-item" href="javascript:void(0);" data-class="btn-outline-light">Pending</a>
+                              <a class="dropdown-item" href="javascript:void(0);" onclick="updateLeaveStatus({{this.employeeLeaveRequestId}}, 'PENDING')" data-class="btn-outline-light">Pending</a>
 								{{/compare}}
                             </li>
                             <li>
 								{{#compare this.employeeLeaveRequestStatus "===" "Approved"}}
                               <a class="dropdown-item" href="javascript:void(0);" data-class="btn-subtle-primary" data-selected="true">Approved</a>
 								{{else}}
-                              <a class="dropdown-item" href="javascript:void(0);" data-class="btn-subtle-primary">Approved</a>
+                              <a class="dropdown-item" href="javascript:void(0);" onclick="updateLeaveStatus({{this.employeeLeaveRequestId}}, 'APPROVED')" data-class="btn-subtle-primary">Approved</a>
 								{{/compare}}
                             </li>
                             <li>
 								{{#compare this.employeeLeaveRequestStatus "===" "Rejected"}}
                               <a class="dropdown-item" href="javascript:void(0);" data-class="btn-subtle-secondary">Rejected</a>
 								{{else}}
-                              <a class="dropdown-item" href="javascript:void(0);" data-class="btn-subtle-secondary">Pending</a>
+                              <a class="dropdown-item" href="javascript:void(0);" onclick="updateLeaveStatus({{this.employeeLeaveRequestId}}, 'DISAPPROVED')" data-class="btn-subtle-secondary">Rejected</a>
 								{{/compare}}
                             </li>
                           </ul>
@@ -1219,7 +1219,7 @@
                               <a class="dropdown-item" href="javascript:void(0);">Edit</a>
                             </li>
                             <li>
-                              <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                              <a class="dropdown-item" href="javascript:void(0);" onclick="deleteLeaveStatus({{this.employeeLeaveRequestId}})">Delete</a>
                             </li>
                           </ul>
                         </div>
@@ -1340,7 +1340,47 @@
   <script>
 	
 	console.log(22);
+	function updateLeaveStatus(id, status)
+	{
+		$.ajax({
+            url: "/admin/update-employee-leave-request-status",
+            type: "POST",
+            data: {
+                'employeeLeaveRequestId': id,
+                'employeeLeaveRequestStatus': status,
+            },
+            success: function(data){
+                console.log(data);
+				if(data.statusCode==0)
+				{
+					window.location.reload();
+				}
+            },
+			error: function(err){
+				console.log(err);
+			}
+        });
+	}
 	
+	
+	
+	function deleteLeaveStatus(id)
+	{
+		$.ajax({
+            url: "/admin/delete-employee-leave-request/" + id,
+            type: "DELETE",
+            success: function(data){
+                console.log(data);
+				if(data.statusCode==0)
+				{
+					window.location.reload();
+				}
+            },
+			error: function(err){
+				console.log(err);
+			}
+        });
+	}
 	
     $("#createLeaveRequest").submit(function(e) {
         e.preventDefault();
