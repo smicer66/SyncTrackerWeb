@@ -1,6 +1,7 @@
 var session = require('express-session');
 var SessionService = require("../services/session.service");
 
+
 module.exports = function(options) {
 	////console.log("<<<<<<");
 	/*return function(err, req, res, next){
@@ -8,6 +9,7 @@ module.exports = function(options) {
 		
 		next();
 	}*/
+	//console.log(options);
 	return function(req, res, next) {
 		////console.log('session id created');
 		/*app.use(session(
@@ -47,10 +49,14 @@ module.exports = function(options) {
 			}
 			else
 			{
-				////console.log(req);
+				//console.log(req.url);
 				////console.log("Creating domain session for the domain " + req.hostname);
+				
 				req.session.domain = req.hostname;
-				SessionService.getClientData(req, res, next, req.hostname);/*.then((bodyJS)=>{
+				SessionService.getClientData(req, res, next, req.hostname);
+				req.session.save()
+				return res.redirect('/redirect?url=' + req.url);
+				/*.then((bodyJS)=>{
 					//console.log("bodyJS...");
 					//console.log(bodyJS);
 					req.session.client = JSON.stringify(bodyJS);
@@ -62,6 +68,7 @@ module.exports = function(options) {
 				//{
 				//	//console.log(JSON.stringify(bodyJS));
 				//}
+				console.log('test');
 			}
 			next();
 		}

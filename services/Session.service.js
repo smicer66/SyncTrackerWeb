@@ -23,7 +23,8 @@ exports.getClientData = async function(req, res, next, domainName){
 			////	'containing a 6-digit code. Enter the code to activate your account.'});
 			//return bodyJS;
 			req.session.client = JSON.stringify(bodyJS);
-			req.session.save()
+			req.session.save();
+			
         }
         else {
 

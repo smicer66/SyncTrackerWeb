@@ -69,7 +69,11 @@ hbs.registerHelper('compare', function (a, operator, b, options) {
   }
 });
 
-app.use(session({ secret: 'keyboard cat',resave:false,saveUninitialized:true, cookie: { maxAge: 60000 }}));
+//app.use(session({ secret: 'keyboard cat',resave:false,saveUninitialized:true, cookie: { maxAge: 60000 }}));
+var session = session({
+    secret: 'keyboard cat',resave:false,saveUninitialized:true, cookie: { maxAge: 60000 }
+});
+app.use(session);
 console.log(">>>>>>>>>>>>");
 app.use(mw({ app: app, option2: '2' }))
 

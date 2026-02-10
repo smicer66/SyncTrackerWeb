@@ -10,8 +10,8 @@ exports.getEmployeeList = async function(req, res, next) {
 	
 		await EmploymentService.getEmployeeList(req, res, next, (err, employeeList)=>{
 			
-			console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-			console.log(employeeList);
+			//console.log("<<<<<<<<<<<<<<<<<<<<<<<<<dfdfdf<<<");
+			//console.log(employeeList);
 			
 			return res.render('admin/employment/employees', { employeeList: employeeList });
 		})
@@ -42,12 +42,36 @@ exports.postCreateNewEmployee = async function(req, res, next) {
 	
 }
 
+exports.getRedirect = async function(req, res, next) {
+	try {
+		
+		var client = req.session.client;
+		//console.log(client);
+		client = JSON.parse(client);
+		//console.log(client.responseObject.client.clientId);
+		/*await EmploymentService.getEmployeeLeaveDashboardData(req, res, next, (err, leaveData)=>{
+			
+			console.log("leaveData...");
+			console.log(leaveData);
+			return res.render('admin/employment/leave', leaveData);
+		});*/
+		//return res.render('admin/employment/leave', {  });
+		console.log(req.params);
+		var redirectUrl = req.params.url;
+		return res.redirect(redirectUrl);
+	} catch (err) {
+		next(err);
+	}
+	
+}
+
+
 
 exports.getEmployeeLeaveRequest = async function(req, res, next) {
 	try {
 		
 		var client = req.session.client;
-		//console.log(client);
+		console.log(client);
 		client = JSON.parse(client);
 		//console.log(client.responseObject.client.clientId);
 		await EmploymentService.getEmployeeLeaveDashboardData(req, res, next, (err, leaveData)=>{

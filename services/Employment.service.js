@@ -220,7 +220,7 @@ exports.deleteUpdateEmployeeLeaveRequest = async function(req, res, next){
 
 
 exports.getEmployeeLeaveDashboardData = function getEmployeeList(req, res, next, callback){
-	
+	console.log(req.session);
 	const response = request({
 		url: 'http://localhost:8080/api/v1/employment/get-employee-leave-dashboard/1',
 		headers: {"Authorization": "Bearer " + req.session.token},

@@ -6,6 +6,16 @@ var RegisterController = require("../controllers/register.controller");
 var UserController = require("../controllers/user.controller");
 var EmploymentController = require("../controllers/employment.controller");
 
+function isAuthenticated (req, res, next) {
+  if (req.session.token)
+  {
+	  next();
+  }
+  else{
+	  console.log("Redirect to login page");
+	  return res.redirect('/login');
+  }
+}
 /* GET home page. */
 router.get('/login', function(req, res, next) {
 	//console.log(req.session.client);
@@ -19,6 +29,7 @@ router.get('/login', function(req, res, next) {
 	}
 });
 
+router.get("/redirect", EmploymentController.getRedirect);
 
 /*router.get("/login", function(req, res) {
   res.render('index', { title: 'Express' });
@@ -31,9 +42,9 @@ router.get("/sign-up", function(req, res) {
   res.render('signup', { title: 'Express' });
 });
 
-router.get("/admin/employees", EmploymentController.getEmployeeList);
+router.get("/admin/employees", isAuthenticated, EmploymentController.getEmployeeList);
 router.post("/admin/create-new-employee", EmploymentController.postCreateNewEmployee);
-router.get("/admin/employee-leave-request", EmploymentController.getEmployeeLeaveRequest);
+router.get("/admin/employee-leave-request", isAuthenticated, EmploymentController.getEmployeeLeaveRequest);
 router.post("/admin/create-new-employee-leave-request", EmploymentController.postEmployeeLeaveRequest);
 router.post("/admin/update-employee-leave-request-status", EmploymentController.postUpdateEmployeeLeaveRequestStatus);
 router.delete("/admin/delete-employee-leave-request/:id", EmploymentController.deleteUpdateEmployeeLeaveRequest);
